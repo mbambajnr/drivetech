@@ -1,0 +1,136 @@
+{
+  "submissions": [
+    {
+      "referenceNumber": "DT-LIC-20261116-JVSY",
+      "type": "licensing",
+      "status": "new",
+      "fullName": "Kofi Mensah",
+      "phone": "+1 555-017-4499",
+      "email": "kofi.m@example.com",
+      "selectedServiceId": "lic-new-driver",
+      "selectedServiceName": "New Driver Licence Application Guidance",
+      "preferredBranchId": "branch-central",
+      "preferredBranchName": "DriveTech Central Training Academy",
+      "customerMessage": "Seeking guidance on theory test prerequisites.",
+      "consentAcknowledged": true,
+      "authorityDisclaimerAcknowledged": true,
+      "id": "sub-1794855505914-dgmdg",
+      "createdAt": "2026-11-16T18:58:25.914Z",
+      "updatedAt": "2026-11-16T18:58:25.914Z"
+    },
+    {
+      "referenceNumber": "DT-TRN-20261116-TTFO",
+      "type": "training",
+      "status": "completed",
+      "fullName": "Marcus Vance",
+      "phone": "+1 555-019-8833",
+      "email": "marcus.vance@example.com",
+      "selectedServiceId": "course-car-standard",
+      "selectedServiceName": "Standard Light Vehicle Driving (Class B)",
+      "preferredBranchId": "branch-central",
+      "preferredBranchName": "DriveTech Central Training Academy",
+      "desiredStartPeriod": "Next available start period",
+      "customerMessage": "First time learner seeking manual car lessons.",
+      "consentAcknowledged": true,
+      "id": "sub-1794855505910-p2v6f",
+      "createdAt": "2026-11-16T18:58:25.910Z",
+      "updatedAt": "2026-11-16T18:58:26.040Z"
+    },
+    {
+      "id": "sub-sample-01",
+      "referenceNumber": "DT-TRN-20261116-A1B2",
+      "type": "training",
+      "status": "new",
+      "fullName": "Alexander Wright",
+      "phone": "+1 555-014-9921",
+      "email": "alex.wright@example.com",
+      "selectedServiceId": "course-car-standard",
+      "selectedServiceName": "Standard Light Vehicle Driving (Class B)",
+      "preferredBranchId": "branch-central",
+      "preferredBranchName": "DriveTech Central Training Academy",
+      "desiredStartPeriod": "Within next 2 weeks",
+      "customerMessage": "Looking for morning weekend sessions to prepare for license exam.",
+      "consentAcknowledged": true,
+      "createdAt": "2026-11-16T16:58:25.909Z",
+      "updatedAt": "2026-11-16T16:58:25.909Z"
+    },
+    {
+      "id": "sub-sample-02",
+      "referenceNumber": "DT-LIC-20261116-K9P3",
+      "type": "licensing",
+      "status": "contacted",
+      "fullName": "Fatima Al-Mansoor",
+      "phone": "+1 555-018-4412",
+      "email": "fatima.m@example.com",
+      "selectedServiceId": "lic-international-conversion",
+      "selectedServiceName": "Foreign / International Licence Conversion Support",
+      "preferredBranchId": "branch-west",
+      "preferredBranchName": "DriveTech West City Campus",
+      "customerMessage": "Relocated recently. Need assistance converting GCC driver license.",
+      "consentAcknowledged": true,
+      "authorityDisclaimerAcknowledged": true,
+      "createdAt": "2026-11-15T18:58:25.909Z",
+      "updatedAt": "2026-11-16T00:58:25.909Z"
+    }
+  ],
+  "notes": [
+    {
+      "id": "note-1794855506037-tiyg",
+      "submissionId": "sub-1794855505910-p2v6f",
+      "authorName": "DriveTech Operations Lead",
+      "noteText": "Called Marcus at 10:15 AM. Confirmed availability for Central Campus morning class.",
+      "createdAt": "2026-11-16T18:58:26.037Z"
+    },
+    {
+      "id": "note-01",
+      "submissionId": "sub-sample-02",
+      "authorName": "Sarah Jenkins (Admissions)",
+      "noteText": "Called Fatima via phone. Sent translation guideline checklist via WhatsApp. Waiting for her document copies.",
+      "createdAt": "2026-11-16T00:58:25.909Z"
+    }
+  ],
+  "auditLogs": [
+    {
+      "id": "audit-1794855506040",
+      "submissionId": "sub-1794855505910-p2v6f",
+      "fromStatus": "contacted",
+      "toStatus": "completed",
+      "changedBy": "DriveTech Operations Lead",
+      "changedAt": "2026-11-16T18:58:26.040Z"
+    },
+    {
+      "id": "audit-1794855506033",
+      "submissionId": "sub-1794855505910-p2v6f",
+      "fromStatus": "new",
+      "toStatus": "contacted",
+      "changedBy": "DriveTech Operations Lead",
+      "changedAt": "2026-11-16T18:58:26.033Z"
+    },
+    {
+      "id": "audit-01",
+      "submissionId": "sub-sample-02",
+      "fromStatus": "new",
+      "toStatus": "contacted",
+      "changedBy": "Sarah Jenkins",
+      "changedAt": "2026-11-16T00:58:25.909Z"
+    }
+  ],
+  "staffUsers": [
+    {
+      "id": "staff-admin-01",
+      "email": "admin@drivetech.com",
+      "passwordHash": "$2b$10$LE2wrGOafZAnJSAQcCFAJOoeVM0aGsI6SjlUsQIKcJI9LIL4KL6J.",
+      "fullName": "DriveTech Operations Lead",
+      "role": "admin",
+      "createdAt": "2026-11-16T18:58:25.909Z"
+    },
+    {
+      "id": "staff-member-02",
+      "email": "sarah.jenkins@drivetech.com",
+      "passwordHash": "$2b$10$LE2wrGOafZAnJSAQcCFAJOoeVM0aGsI6SjlUsQIKcJI9LIL4KL6J.",
+      "fullName": "Sarah Jenkins",
+      "role": "staff",
+      "createdAt": "2026-11-16T18:58:25.909Z"
+    }
+  ]
+}
