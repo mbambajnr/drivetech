@@ -749,3 +749,4 @@ export default function StaffDashboardClient({ user, initialSubmissions, initial
     </div>
   );
 }
+

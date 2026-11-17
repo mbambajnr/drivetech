@@ -1,6 +1,60 @@
 {
   "submissions": [
     {
+      "referenceNumber": "DT-LIC-20261117-N69Z",
+      "type": "licensing",
+      "status": "new",
+      "fullName": "Kofi Mensah",
+      "phone": "+1 555-017-4499",
+      "email": "kofi.m@example.com",
+      "selectedServiceId": "lic-new-driver",
+      "selectedServiceName": "New Driver Licence Advisory & File Preparation",
+      "preferredBranchId": "branch-central",
+      "preferredBranchName": "DriveTech Central Training Academy",
+      "customerMessage": "Seeking guidance on theory test prerequisites.",
+      "consentAcknowledged": true,
+      "authorityDisclaimerAcknowledged": true,
+      "id": "sub-1794934580236-h3nz7",
+      "createdAt": "2026-11-17T16:56:20.236Z",
+      "updatedAt": "2026-11-17T16:56:20.236Z"
+    },
+    {
+      "referenceNumber": "DT-TRN-20261117-1QW7",
+      "type": "training",
+      "status": "completed",
+      "fullName": "Marcus Vance",
+      "phone": "+1 555-019-8833",
+      "email": "marcus.vance@example.com",
+      "selectedServiceId": "course-car-standard",
+      "selectedServiceName": "Standard Light Vehicle Driving (Class B)",
+      "preferredBranchId": "branch-central",
+      "preferredBranchName": "DriveTech Central Training Academy",
+      "desiredStartPeriod": "Next available start period",
+      "customerMessage": "First time learner seeking manual car lessons.",
+      "consentAcknowledged": true,
+      "id": "sub-1794934580227-khtgl",
+      "createdAt": "2026-11-17T16:56:20.227Z",
+      "updatedAt": "2026-11-17T16:56:20.479Z"
+    },
+    {
+      "referenceNumber": "DT-TRN-20261117-YNA9",
+      "type": "training",
+      "status": "new",
+      "fullName": "Emana Jewelry",
+      "phone": "+233 539490469",
+      "email": "emanajewelries@gmail.com",
+      "selectedServiceId": "course-car-standard",
+      "selectedServiceName": "Standard Light Vehicle Driving (Class B)",
+      "preferredBranchId": "branch-west",
+      "preferredBranchName": "DriveTech West City Campus",
+      "desiredStartPeriod": "Next available start period",
+      "customerMessage": "TTYL",
+      "consentAcknowledged": true,
+      "id": "sub-1794933753934-7b1ne",
+      "createdAt": "2026-11-17T16:42:33.935Z",
+      "updatedAt": "2026-11-17T16:42:33.935Z"
+    },
+    {
       "referenceNumber": "DT-LIC-20261116-JVSY",
       "type": "licensing",
       "status": "new",
@@ -75,6 +129,13 @@
   ],
   "notes": [
     {
+      "id": "note-1794934580477-pyo8",
+      "submissionId": "sub-1794934580227-khtgl",
+      "authorName": "DriveTech Operations Lead",
+      "noteText": "Called Marcus at 10:15 AM. Confirmed availability for Central Campus morning class.",
+      "createdAt": "2026-11-17T16:56:20.477Z"
+    },
+    {
       "id": "note-1794855506037-tiyg",
       "submissionId": "sub-1794855505910-p2v6f",
       "authorName": "DriveTech Operations Lead",
@@ -90,6 +151,22 @@
     }
   ],
   "auditLogs": [
+    {
+      "id": "audit-1794934580479",
+      "submissionId": "sub-1794934580227-khtgl",
+      "fromStatus": "contacted",
+      "toStatus": "completed",
+      "changedBy": "DriveTech Operations Lead",
+      "changedAt": "2026-11-17T16:56:20.479Z"
+    },
+    {
+      "id": "audit-1794934580475",
+      "submissionId": "sub-1794934580227-khtgl",
+      "fromStatus": "new",
+      "toStatus": "contacted",
+      "changedBy": "DriveTech Operations Lead",
+      "changedAt": "2026-11-17T16:56:20.475Z"
+    },
     {
       "id": "audit-1794855506040",
       "submissionId": "sub-1794855505910-p2v6f",

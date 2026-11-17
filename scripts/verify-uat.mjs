@@ -177,3 +177,4 @@ test('UAT-13: Long input and special characters handled without crashing', () =>
 
 console.log('\n----------------------------------------------------');
 console.log(`Results: ${passedTests}/${totalTests} tests passed (${Math.round((passedTests/totalTests)*100)}%)\n`);
+
