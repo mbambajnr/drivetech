@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { 
   Lock, 
   LogOut, 
@@ -192,14 +193,21 @@ export default function StaffDashboardClient({ user, initialSubmissions, initial
         
         {/* Top Header Bar */}
         <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold shadow">
-              <Lock className="w-5 h-5 text-blue-400" />
-            </div>
-            <div>
+          <div className="flex items-center gap-4">
+            <Link href="/" className="h-12 w-28 flex items-center hover:opacity-90 transition-opacity" aria-label="DriveTech Home">
+              <Image 
+                src="/images/logo.svg" 
+                alt="DriveTech Logo" 
+                width={120} 
+                height={60} 
+                className="object-contain w-full h-full"
+                priority
+              />
+            </Link>
+            <div className="border-l border-slate-200 pl-4">
               <div className="flex items-center gap-2">
-                <h1 className="text-xl sm:text-2xl font-black text-slate-900">
-                  DriveTech Staff Workspace
+                <h1 className="text-lg sm:text-xl font-black text-slate-900">
+                  Staff Workspace
                 </h1>
                 <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-100 text-blue-800">
                   {user.role}

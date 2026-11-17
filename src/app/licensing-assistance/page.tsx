@@ -9,46 +9,44 @@ import {
   MapPin, 
   PhoneCall, 
   MessageCircle,
-  FileCheck,
-  ShieldCheck,
-  Check
+  FileCheck
 } from 'lucide-react';
 import { LICENSING_SERVICES } from '@/data/courses';
 import { BRANCHES, COMPANY_INFO } from '@/data/branches';
 
 export default function LicensingAssistancePage() {
   return (
-    <div className="py-10 sm:py-14 bg-slate-50 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    <div className="py-12 sm:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Header */}
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-slate-200 text-slate-800 text-xs font-bold uppercase tracking-wider mb-2">
-            Advisory &amp; Compliance Services
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-bold uppercase tracking-wider mb-3">
+            Licensing Advisory & Guidance Desk
           </div>
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Driver Licensing Assistance &amp; Advisory Desk
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
+            Official Licensing Assistance & Advisory
           </h1>
-          <p className="mt-2 text-slate-600 text-sm sm:text-base leading-relaxed">
-            Navigating statutory licensing bureau requirements can be complex. DriveTech provides document readiness audits, procedural compliance checks, and theoretical test coaching for first-time applicants, endorsements, and expatriate licence conversions.
+          <p className="mt-3 text-slate-600 text-base sm:text-lg">
+            Navigating statutory licensing requirements can be complex. DriveTech provides dedicated administrative support, document readiness audits, and procedural guidance for prospective and current drivers.
           </p>
         </div>
 
-        {/* Mandatory Statutory Notice (PRD Section 7.1 FR-PUB-004 & FR-LIC-002) */}
-        <div className="bg-amber-50 rounded-lg border-2 border-amber-300 p-6 sm:p-8">
+        {/* Mandatory Authority Disclaimer (FR-PUB-004 & FR-LIC-002) */}
+        <div className="bg-amber-50 rounded-2xl border-2 border-amber-300/80 p-6 sm:p-8 shadow-sm">
           <div className="flex items-start gap-4">
-            <div className="w-10 h-10 rounded bg-amber-600 text-white flex items-center justify-center shrink-0 font-bold mt-0.5">
-              <ShieldCheck className="w-6 h-6" />
+            <div className="w-12 h-12 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0">
+              <ShieldAlert className="w-6 h-6" />
             </div>
             <div className="space-y-2">
-              <div className="text-xs font-bold uppercase tracking-widest text-amber-900">
-                Official Regulatory Boundary Notice
-              </div>
-              <blockquote className="text-sm font-bold text-amber-950 italic border-l-4 border-amber-500 pl-3">
+              <h2 className="text-lg font-bold text-amber-950">
+                Important Regulatory Notice & Disclaimer
+              </h2>
+              <blockquote className="text-sm font-semibold text-amber-900 italic border-l-4 border-amber-500 pl-3">
                 “Submitting this request starts DriveTech’s follow-up process. Licence approval and issuance remain subject to the requirements and decisions of the relevant authority.”
               </blockquote>
-              <p className="text-xs text-amber-900 leading-relaxed pt-1">
-                DriveTech Academy is an accredited private driver training institution. We do not issue government driver licences, provisional permits, conduct statutory examiner road tests, or waive licensing authority regulations. All official permissions and credentials remain strictly under the jurisdiction of the national licensing bureau.
+              <p className="text-xs text-amber-800 leading-relaxed pt-1">
+                DriveTech is an independent vocational training and advisory institution. We do not issue government licences, grant driving permits, conduct statutory driving examiner tests, or override authority regulations. Our services are strictly educational and advisory in nature.
               </p>
             </div>
           </div>
@@ -56,31 +54,29 @@ export default function LicensingAssistancePage() {
 
         {/* Services We Provide */}
         <div className="space-y-6">
-          <div className="border-b border-slate-200 pb-3">
-            <h2 className="text-xl font-bold text-slate-900">
-              Assistance &amp; Advisory Scope
+          <div className="border-b border-slate-200 pb-4">
+            <h2 className="text-2xl font-bold text-slate-900">
+              Assistance Services Available
             </h2>
-            <p className="text-xs text-slate-500 mt-0.5">
-              Select an area below where our compliance officers can assist your preparation.
+            <p className="text-sm text-slate-600 mt-1">
+              Select an area where our admissions and compliance team can support your preparation.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {LICENSING_SERVICES.map((service) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {LICENSING_SERVICES.map((service, idx) => (
               <div 
                 key={service.id} 
-                className="bg-white rounded-lg border border-slate-200 p-6 flex flex-col justify-between shadow-sm hover:border-slate-400 transition-colors"
+                className="bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between shadow-sm hover:border-blue-300 transition-colors"
               >
-                <div className="space-y-3.5">
-                  <div className="w-8 h-8 rounded bg-blue-50 text-blue-800 flex items-center justify-center font-bold">
-                    <FileCheck className="w-4 h-4" />
+                <div className="space-y-4">
+                  <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-bold">
+                    <FileCheck className="w-5 h-5" />
                   </div>
-                  
-                  <h3 className="text-base font-bold text-slate-900">
+                  <h3 className="text-lg font-bold text-slate-900">
                     {service.name}
                   </h3>
-
-                  <p className="text-xs text-slate-600 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {service.summary}
                   </p>
                   
@@ -89,10 +85,7 @@ export default function LicensingAssistancePage() {
                       <strong className="text-slate-900">Eligibility:</strong> {service.eligibility}
                     </div>
                     <div>
-                      <strong className="text-slate-900">Advisory Fee:</strong> {service.feeGuidance}
-                    </div>
-                    <div>
-                      <strong className="text-slate-900">Review Timeline:</strong> {service.turnaround}
+                      <strong className="text-slate-900">Fee Guidance:</strong> {service.feeGuidance}
                     </div>
                   </div>
                 </div>
@@ -100,7 +93,7 @@ export default function LicensingAssistancePage() {
                 <div className="mt-6 pt-4 border-t border-slate-100">
                   <Link
                     href={`/licensing-assistance/request?service=${service.id}`}
-                    className="w-full inline-flex items-center justify-center gap-2 py-2 px-4 rounded bg-blue-800 hover:bg-blue-900 text-xs font-bold text-white transition-colors"
+                    className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-xs font-bold text-white transition-colors"
                   >
                     <span>Request Assistance</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -111,40 +104,68 @@ export default function LicensingAssistancePage() {
           </div>
         </div>
 
-        {/* Step-by-Step Guidance */}
-        <div className="bg-white rounded-lg border border-slate-200 p-6 sm:p-8 space-y-6">
-          <div className="border-b border-slate-100 pb-3">
-            <h3 className="text-lg font-bold text-slate-900">
-              The Advisory &amp; Submission Procedure
-            </h3>
-            <p className="text-xs text-slate-500 mt-0.5">
-              How our licensing coordinators support your application file.
-            </p>
+        {/* Step-by-Step Assistance Journey */}
+        <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-12 border border-slate-800">
+          <div className="max-w-2xl mb-10">
+            <h2 className="text-xs font-bold uppercase tracking-widest text-blue-400 mb-2">Our Process</h2>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-white">How the Assistance Process Works</h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-xs text-slate-600">
-            <div className="space-y-1.5 p-4 rounded bg-slate-50 border border-slate-100">
-              <span className="font-bold text-blue-900 uppercase">Phase 1</span>
-              <div className="font-bold text-slate-900 text-sm">Submit Online Request</div>
-              <p>Provide your current licence status, foreign permit country (if converting), and target category.</p>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="p-5 rounded-2xl bg-slate-800/80 border border-slate-700 space-y-2">
+              <div className="text-xs font-extrabold text-blue-400">STEP 1</div>
+              <h4 className="text-base font-bold text-white">Submit Request</h4>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Fill out our brief online request form detailing your current license status and requirement.
+              </p>
             </div>
 
-            <div className="space-y-1.5 p-4 rounded bg-slate-50 border border-slate-100">
-              <span className="font-bold text-blue-900 uppercase">Phase 2</span>
-              <div className="font-bold text-slate-900 text-sm">Prerequisite Audit</div>
-              <p>Coordinator verifies national authority prerequisites, medical examination requirements, and required forms.</p>
+            <div className="p-5 rounded-2xl bg-slate-800/80 border border-slate-700 space-y-2">
+              <div className="text-xs font-extrabold text-blue-400">STEP 2</div>
+              <h4 className="text-base font-bold text-white">Advisory Call</h4>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                A DriveTech coordinator contacts you within 24 hours to review eligibility and authority prerequisites.
+              </p>
             </div>
 
-            <div className="space-y-1.5 p-4 rounded bg-slate-50 border border-slate-100">
-              <span className="font-bold text-blue-900 uppercase">Phase 3</span>
-              <div className="font-bold text-slate-900 text-sm">File Compilation</div>
-              <p>We compile and review your dossier (certified translations, identification, eye test, application forms).</p>
+            <div className="p-5 rounded-2xl bg-slate-800/80 border border-slate-700 space-y-2">
+              <div className="text-xs font-extrabold text-blue-400">STEP 3</div>
+              <h4 className="text-base font-bold text-white">Document Checklist</h4>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Receive a customized checklist of forms, medical certificates, and translation requirements needed by the bureau.
+              </p>
             </div>
 
-            <div className="space-y-1.5 p-4 rounded bg-slate-50 border border-slate-100">
-              <span className="font-bold text-blue-900 uppercase">Phase 4</span>
-              <div className="font-bold text-slate-900 text-sm">Bureau Lodgement</div>
-              <p>You present your verified, complete file to the official licensing department with zero documentation errors.</p>
+            <div className="p-5 rounded-2xl bg-slate-800/80 border border-slate-700 space-y-2">
+              <div className="text-xs font-extrabold text-blue-400">STEP 4</div>
+              <h4 className="text-base font-bold text-white">Bureau Submission</h4>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Complete and submit your file directly with the official licensing department with full readiness.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-10 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="text-xs text-slate-400">
+              Questions before requesting? Speak to our licensing advisor directly.
+            </div>
+            <div className="flex items-center gap-3">
+              <a
+                href={COMPANY_INFO.generalWhatsApp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold inline-flex items-center gap-2"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span>WhatsApp Desk</span>
+              </a>
+              <Link
+                href="/licensing-assistance/request"
+                className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold inline-flex items-center gap-2"
+              >
+                <span>Request Online</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
         </div>
@@ -153,3 +174,4 @@ export default function LicensingAssistancePage() {
     </div>
   );
 }
+

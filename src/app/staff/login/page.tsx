@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Lock, Car, AlertCircle, ArrowRight, ShieldCheck, KeyRound } from 'lucide-react';
 
 export default function StaffLoginPage() {
@@ -54,10 +55,17 @@ export default function StaffLoginPage() {
         
         {/* Brand & Heading */}
         <div className="text-center space-y-2">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-slate-900 text-white shadow-lg mb-2">
-            <Lock className="w-7 h-7 text-blue-400" />
+          <div className="mx-auto w-36 h-20 flex items-center justify-center mb-1">
+            <Image 
+              src="/images/logo.svg" 
+              alt="DriveTech Logo" 
+              width={160} 
+              height={80} 
+              className="object-contain w-full h-full"
+              priority
+            />
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+          <h1 className="text-2xl font-black text-slate-900 tracking-tight">
             Staff Workspace Access
           </h1>
           <p className="text-xs sm:text-sm text-slate-500">

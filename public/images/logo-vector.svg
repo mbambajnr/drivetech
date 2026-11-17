@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" height="100%">
+  <defs>
+    <!-- Filter for 3D bevel & drop shadow -->
+    <filter id="car-shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="3" dy="5" stdDeviation="4" flood-color="#000000" flood-opacity="0.35" />
+    </filter>
+    <filter id="text-shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="4" dy="6" stdDeviation="3.5" flood-color="#000000" flood-opacity="0.4" />
+    </filter>
+
+    <!-- Gradients for Car Silhouette (Green 3D Metallic) -->
+    <linearGradient id="green-metallic" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4ade80" />
+      <stop offset="25%" stop-color="#22c55e" />
+      <stop offset="70%" stop-color="#16a34a" />
+      <stop offset="100%" stop-color="#14532d" />
+    </linearGradient>
+
+    <linearGradient id="green-highlight" x1="0%" y1="0%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#86efac" />
+      <stop offset="50%" stop-color="#22c55e" />
+      <stop offset="100%" stop-color="#15803d" />
+    </linearGradient>
+
+    <!-- Gradient for Aerodynamic Speed Swoosh (Gold / Orange) -->
+    <linearGradient id="flame-gradient" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#c2410c" />
+      <stop offset="25%" stop-color="#ea580c" />
+      <stop offset="65%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#fef08a" />
+    </linearGradient>
+
+    <!-- Gradient for "Drive" Text (Burnt Orange / Copper Metallic) -->
+    <linearGradient id="drive-orange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fb923c" />
+      <stop offset="30%" stop-color="#ea580c" />
+      <stop offset="75%" stop-color="#c2410c" />
+      <stop offset="100%" stop-color="#7c2d12" />
+    </linearGradient>
+
+    <!-- Gradient for "Tech" Text (Vivid Green Metallic) -->
+    <linearGradient id="tech-green" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4ade80" />
+      <stop offset="30%" stop-color="#22c55e" />
+      <stop offset="75%" stop-color="#16a34a" />
+      <stop offset="100%" stop-color="#14532d" />
+    </linearGradient>
+  </defs>
+
+  <!-- 1. CAR SILHOUETTE (Green & Gold Elements) -->
+  <g filter="url(#car-shadow)">
+    
+    <!-- Roofline & Upper Body Curve -->
+    <path d="M 160 160 
+             C 150 145, 175 110, 220 100 
+             C 270 90, 360 80, 480 85 
+             C 545 88, 620 115, 680 155
+             C 660 148, 590 120, 520 108 
+             C 420 95, 310 102, 230 118 
+             C 195 125, 170 145, 160 160 Z" 
+          fill="url(#green-metallic)" stroke="#15803d" stroke-width="1.5" />
+
+    <!-- Main Body Waistline & Hood -->
+    <path d="M 145 165
+             C 142 160, 148 140, 165 140
+             C 180 140, 230 140, 290 120
+             C 340 105, 430 105, 500 112
+             C 540 116, 610 135, 660 165
+             C 715 198, 770 215, 785 228
+             C 750 226, 700 205, 660 188
+             C 610 165, 520 140, 420 135
+             C 310 130, 230 152, 170 180
+             C 152 188, 146 172, 145 165 Z"
+          fill="url(#green-highlight)" />
+
+    <!-- Rear Spoiler & Tail Fin -->
+    <path d="M 165 138 
+             C 145 135, 130 148, 130 168 
+             C 130 185, 145 195, 165 195
+             C 152 185, 145 175, 145 165 
+             C 145 152, 155 142, 165 138 Z" 
+          fill="url(#green-metallic)" />
+
+    <!-- Rear Wheel Arch (Double dynamic arc) -->
+    <path d="M 175 195 
+             C 178 165, 205 135, 255 135 
+             C 305 135, 335 165, 340 195 
+             C 330 195, 320 160, 295 148
+             C 270 138, 235 140, 210 155
+             C 190 168, 182 185, 175 195 Z" 
+          fill="url(#green-metallic)" />
+
+    <path d="M 195 210
+             C 200 175, 225 150, 260 150
+             C 295 150, 318 175, 322 210
+             C 310 205, 290 165, 260 165
+             C 230 165, 208 190, 195 210 Z"
+          fill="url(#green-highlight)" />
+
+    <!-- Underbody Blade / Rocker Panel -->
+    <path d="M 335 195 
+             C 380 198, 480 205, 595 208
+             C 595 215, 480 215, 335 204 Z" 
+          fill="url(#green-metallic)" />
+
+    <!-- Front Wheel Arch -->
+    <path d="M 645 220 
+             C 655 185, 685 162, 730 162 
+             C 770 162, 792 185, 800 220 
+             C 788 215, 775 178, 750 170
+             C 725 162, 695 168, 672 185
+             C 655 198, 648 212, 645 220 Z" 
+          fill="url(#green-metallic)" />
+
+    <!-- Aerodynamic Speed Flame / Swoosh (Gold / Orange) -->
+    <path d="M 435 145 
+             C 470 165, 545 172, 630 152 
+             C 700 135, 755 170, 790 225
+             C 755 185, 700 152, 630 165 
+             C 555 180, 480 170, 435 145 Z" 
+          fill="url(#flame-gradient)" />
+  </g>
+
+  <!-- 2. "DriveTech" TYPOGRAPHY -->
+  <g filter="url(#text-shadow)" transform="translate(150, 335)">
+    <!-- "Drive" in Metallic Burnt Orange -->
+    <text x="0" y="0" 
+          font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" 
+          font-size="110" 
+          font-weight="900" 
+          font-style="italic" 
+          letter-spacing="-2"
+          fill="url(#drive-orange)" 
+          stroke="#7c2d12" 
+          stroke-width="2.5"
+          paint-order="stroke fill">Drive</text>
+
+    <!-- "Tech" in Metallic Vibrant Green -->
+    <text x="290" y="0" 
+          font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" 
+          font-size="110" 
+          font-weight="900" 
+          font-style="italic" 
+          letter-spacing="-2"
+          fill="url(#tech-green)" 
+          stroke="#14532d" 
+          stroke-width="2.5"
+          paint-order="stroke fill">Tech</text>
+  </g>
+</svg>

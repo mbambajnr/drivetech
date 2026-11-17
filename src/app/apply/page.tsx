@@ -15,9 +15,7 @@ import {
   ShieldCheck, 
   Send,
   Copy,
-  Check,
-  Building2,
-  FileText
+  Check
 } from 'lucide-react';
 import { COURSES } from '@/data/courses';
 import { BRANCHES, COMPANY_INFO } from '@/data/branches';
@@ -32,10 +30,10 @@ function ApplyForm() {
     email: '',
     selectedServiceId: preselectedCourse || (COURSES[0]?.id ?? ''),
     preferredBranchId: BRANCHES[0]?.id ?? '',
-    desiredStartPeriod: 'Next available start period (Earliest)',
+    desiredStartPeriod: 'Next available start period',
     customerMessage: '',
     consentAcknowledged: false,
-    _hp_website: ''
+    _hp_website: '' // Honeypot field
   });
 
   const [clientErrors, setClientErrors] = useState<Record<string, string>>({});
@@ -108,7 +106,7 @@ function ApplyForm() {
         setSubmittedRef(data.referenceNumber);
       }
     } catch (err) {
-      setServerError('Network error. Please verify your connection or contact our admissions desk by phone.');
+      setServerError('Network connection issue. Please verify your connection or call us directly.');
     } finally {
       setIsSubmitting(false);
     }
@@ -128,113 +126,109 @@ function ApplyForm() {
     const selectedBranchObj = BRANCHES.find((b) => b.id === formData.preferredBranchId);
 
     return (
-      <div className="py-12 max-w-3xl mx-auto px-4 sm:px-6">
-        <div className="bg-white rounded-lg border border-slate-300 shadow-sm overflow-hidden">
+      <div className="py-12 sm:py-20 max-w-3xl mx-auto px-4 sm:px-6">
+        <div className="bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
           
-          <div className="bg-slate-900 text-white p-6 sm:p-8 border-b border-slate-800">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded bg-emerald-600 text-white flex items-center justify-center font-bold">
-                <Check className="w-6 h-6" />
-              </div>
-              <div>
-                <span className="text-[11px] font-bold uppercase tracking-widest text-emerald-400">
-                  Application Logged Successfully
-                </span>
-                <h1 className="text-xl sm:text-2xl font-black text-white">
-                  Training Enrolment Request Received
-                </h1>
-              </div>
+          <div className="bg-gradient-to-r from-blue-700 to-blue-800 text-white p-8 sm:p-10 text-center space-y-3">
+            <div className="w-16 h-16 rounded-full bg-emerald-400/20 text-emerald-300 border-2 border-emerald-400 mx-auto flex items-center justify-center">
+              <CheckCircle2 className="w-10 h-10" />
             </div>
+            <h1 className="text-2xl sm:text-3xl font-black">
+              Training Application Received!
+            </h1>
+            <p className="text-sm text-blue-100 max-w-lg mx-auto">
+              Thank you, <strong>{formData.fullName}</strong>. Your enquiry has been routed to the admissions coordinator at {selectedBranchObj?.name || 'DriveTech'}.
+            </p>
           </div>
 
-          <div className="p-6 sm:p-8 space-y-6 text-xs text-slate-700">
+          <div className="p-6 sm:p-10 space-y-8">
             
             {/* Reference Number Box */}
-            <div className="bg-slate-50 border border-slate-300 rounded p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
                 <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
-                  Enrolment Reference Docket
+                  Application Reference Number
                 </span>
-                <span className="text-xl font-mono font-black text-blue-900 tracking-wider">
+                <span className="text-xl sm:text-2xl font-mono font-black text-blue-700 tracking-wider">
                   {submittedRef}
                 </span>
               </div>
               <button
                 type="button"
                 onClick={copyRefToClipboard}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-bold text-slate-700 bg-white border border-slate-300 hover:bg-slate-100 transition-colors shadow-sm"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-slate-700 bg-white border border-slate-300 hover:bg-slate-100 transition-colors shadow-sm"
               >
                 {copied ? (
                   <>
-                    <Check className="w-3.5 h-3.5 text-emerald-600" />
+                    <Check className="w-4 h-4 text-emerald-600" />
                     <span>Copied!</span>
                   </>
                 ) : (
                   <>
-                    <Copy className="w-3.5 h-3.5" />
-                    <span>Copy Reference</span>
+                    <Copy className="w-4 h-4" />
+                    <span>Copy Code</span>
                   </>
                 )}
               </button>
             </div>
 
-            {/* Application Summary Box */}
-            <div className="border border-slate-200 rounded p-4 bg-white space-y-2">
-              <div className="font-bold text-slate-900 text-sm border-b border-slate-100 pb-1.5">
-                Intake Submission Summary
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                <div><strong>Trainee Name:</strong> {formData.fullName}</div>
-                <div><strong>Contact Phone:</strong> {formData.phone}</div>
-                <div><strong>Enrolled Program:</strong> {selectedCourseObj?.name}</div>
-                <div><strong>Campus:</strong> {selectedBranchObj?.name}</div>
-                <div><strong>Preferred Timing:</strong> {formData.desiredStartPeriod}</div>
-                {formData.email && <div><strong>Email:</strong> {formData.email}</div>}
-              </div>
-            </div>
-
             {/* What Happens Next Timeline */}
-            <div className="space-y-3">
-              <h2 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-                Intake Follow-Up Procedure
+            <div className="space-y-4">
+              <h2 className="text-base font-bold text-slate-900 uppercase tracking-wider">
+                What Happens Next
               </h2>
-              <div className="space-y-3 border-l-2 border-slate-300 pl-4 text-xs text-slate-600">
-                <div>
-                  <div className="font-bold text-slate-900">1. Instructor &amp; Schedule Audit</div>
-                  <p>Admissions matches instructor availability against your requested timetable.</p>
+              <div className="space-y-4 border-l-2 border-blue-200 pl-4 ml-2 text-sm text-slate-700">
+                <div className="space-y-1">
+                  <div className="font-bold text-slate-900">1. Verification & Scheduling Check</div>
+                  <p className="text-xs text-slate-600">
+                    Our team reviews instructor availability for <strong>{selectedCourseObj?.name}</strong> matching your requested start period.
+                  </p>
                 </div>
-                <div>
-                  <div className="font-bold text-slate-900">2. Admissions Call Within 24 Business Hours</div>
-                  <p>Our coordinator calls you at <strong>{formData.phone}</strong> or reaches out on WhatsApp to confirm your class schedule.</p>
+                <div className="space-y-1">
+                  <div className="font-bold text-slate-900">2. Direct Contact Within 24 Hours</div>
+                  <p className="text-xs text-slate-600">
+                    A coordinator will contact you at <strong>{formData.phone}</strong> via telephone or WhatsApp to confirm timetable options.
+                  </p>
                 </div>
-                <div>
-                  <div className="font-bold text-slate-900">3. Campus Induction</div>
-                  <p>You visit {selectedBranchObj?.name} to verify identification and begin behind-the-wheel instruction.</p>
+                <div className="space-y-1">
+                  <div className="font-bold text-slate-900">3. Campus Induction & Enrolment</div>
+                  <p className="text-xs text-slate-600">
+                    You visit {selectedBranchObj?.name} for in-person document verification and course kickoff.
+                  </p>
                 </div>
               </div>
             </div>
 
-            {/* Regulatory Notice */}
-            <div className="p-3.5 rounded bg-amber-50 border border-amber-300 text-amber-950 text-[11px] leading-relaxed">
-              <strong>Statutory Reminder:</strong> Submitting this enrolment enquiry initiates academy intake and scheduling. It does not require payment at this stage and does not replace official national licensing bureau statutory requirements.
+            {/* Application Summary Box */}
+            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 space-y-1.5">
+              <div><strong>Selected Course:</strong> {selectedCourseObj?.name}</div>
+              <div><strong>Branch:</strong> {selectedBranchObj?.name}</div>
+              <div><strong>Contact Phone:</strong> {formData.phone}</div>
+              {formData.email && <div><strong>Email:</strong> {formData.email}</div>}
+              <div><strong>Desired Timing:</strong> {formData.desiredStartPeriod}</div>
             </div>
 
-            {/* Actions */}
+            {/* Important Disclaimer Reminder */}
+            <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900 leading-relaxed">
+              <strong>Notice:</strong> This submission initiates your enquiry and does not guarantee an immediate seat or replace official statutory licensing authority requirements.
+            </div>
+
+            {/* Immediate Actions */}
             <div className="pt-2 flex flex-col sm:flex-row gap-3">
               <Link
                 href="/"
-                className="flex-1 text-center py-2.5 px-4 rounded border border-slate-300 text-xs font-bold text-slate-700 hover:bg-slate-50"
+                className="flex-1 text-center py-3 px-4 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 hover:bg-slate-50"
               >
-                Return to Academy Home
+                Return to Homepage
               </Link>
               <a
-                href={`${selectedBranchObj?.whatsappLink || COMPANY_INFO.generalWhatsApp}&text=${encodeURIComponent(`Hello DriveTech Admissions, I just submitted an application under reference ${submittedRef}.`)}`}
+                href={`${selectedBranchObj?.whatsappLink || COMPANY_INFO.generalWhatsApp}&text=${encodeURIComponent(`Hello, I just submitted an application with reference ${submittedRef}.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 text-center py-2.5 px-4 rounded bg-emerald-700 hover:bg-emerald-800 text-xs font-bold text-white shadow-sm flex items-center justify-center gap-2"
+                className="flex-1 text-center py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-xs font-bold text-white shadow-sm flex items-center justify-center gap-2"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>Message Admissions Desk on WhatsApp</span>
+                <span>Message Campus on WhatsApp</span>
               </a>
             </div>
 
@@ -244,40 +238,40 @@ function ApplyForm() {
     );
   }
 
-  // ACTIVE ENROLMENT FORM
+  // ACTIVE APPLICATION FORM (FR-FORM-001 - 003)
   return (
-    <div className="py-10 sm:py-14 bg-slate-50 min-h-screen">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 space-y-6">
+    <div className="py-12 sm:py-16">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         {/* Header */}
-        <div className="space-y-2 border-b border-slate-200 pb-4">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-slate-200 text-slate-800 text-xs font-bold uppercase tracking-wider">
-            Intake Enrolment Form
+        <div className="text-center max-w-2xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-wider">
+            Online Training Application
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            DriveTech Academy Application
+          <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+            Apply for Training at DriveTech
           </h1>
-          <p className="text-xs sm:text-sm text-slate-600">
-            Submit your training preferences below. Zero deposit required. An admissions coordinator will follow up within 24 business hours to confirm your timetable.
+          <p className="text-sm sm:text-base text-slate-600">
+            Submit your information below to register your interest. Our admissions team will review course schedules and contact you to finalize enrolment.
           </p>
         </div>
 
-        {/* Server Error Alert */}
+        {/* Error Alert */}
         {serverError && (
-          <div className="p-3 rounded bg-rose-50 border border-rose-300 text-xs text-rose-800 flex items-start gap-2.5">
-            <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+          <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-xs sm:text-sm text-rose-800 flex items-start gap-3">
+            <AlertCircle className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
             <div>
-              <div className="font-bold">Submission Blocked</div>
+              <div className="font-bold">Submission Failed</div>
               <div>{serverError}</div>
             </div>
           </div>
         )}
 
         {/* Form Container */}
-        <div className="bg-white rounded-lg border border-slate-300 shadow-sm p-6 sm:p-8">
-          <form onSubmit={handleSubmit} noValidate className="space-y-6">
+        <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden p-6 sm:p-10">
+          <form onSubmit={handleSubmit} noValidate className="space-y-8">
             
-            {/* Honeypot field */}
+            {/* Honeypot field for bot spam detection */}
             <input
               type="text"
               name="_hp_website"
@@ -290,23 +284,24 @@ function ApplyForm() {
             />
 
             {/* Section 1: Course and Branch */}
-            <div className="space-y-3">
-              <h2 className="text-xs font-bold text-slate-900 uppercase tracking-wider pb-1.5 border-b border-slate-100 flex items-center gap-2">
-                <Car className="w-4 h-4 text-blue-900" />
-                <span>1. Select Program &amp; Campus</span>
+            <div className="space-y-4">
+              <h2 className="text-base font-bold text-slate-900 uppercase tracking-wider pb-2 border-b border-slate-100 flex items-center gap-2">
+                <Car className="w-5 h-5 text-blue-600" />
+                <span>1. Select Program & Campus</span>
               </h2>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {/* Course Selection */}
                 <div>
-                  <label htmlFor="selectedServiceId" className="block text-xs font-bold text-slate-800 mb-1">
-                    Training Program <span className="text-rose-600">*</span>
+                  <label htmlFor="selectedServiceId" className="block text-xs font-bold text-slate-800 mb-1.5">
+                    Training Program <span className="text-rose-500">*</span>
                   </label>
                   <select
                     id="selectedServiceId"
                     value={formData.selectedServiceId}
                     onChange={(e) => setFormData({ ...formData, selectedServiceId: e.target.value })}
-                    className={`w-full px-3 py-2 rounded border text-xs sm:text-sm bg-white focus:outline-none focus:ring-1 focus:ring-blue-900 ${
-                      clientErrors.selectedServiceId ? 'border-rose-400' : 'border-slate-300'
+                    className={`w-full px-3.5 py-2.5 rounded-xl border text-sm bg-white focus:outline-none focus:ring-2 ${
+                      clientErrors.selectedServiceId ? 'border-rose-400 focus:ring-rose-200' : 'border-slate-300 focus:ring-blue-100 focus:border-blue-600'
                     }`}
                   >
                     {COURSES.map((course) => (
@@ -316,20 +311,21 @@ function ApplyForm() {
                     ))}
                   </select>
                   {clientErrors.selectedServiceId && (
-                    <p className="mt-1 text-[11px] text-rose-600">{clientErrors.selectedServiceId}</p>
+                    <p className="mt-1 text-xs text-rose-600">{clientErrors.selectedServiceId}</p>
                   )}
                 </div>
 
+                {/* Branch Selection */}
                 <div>
-                  <label htmlFor="preferredBranchId" className="block text-xs font-bold text-slate-800 mb-1">
-                    Campus Location <span className="text-rose-600">*</span>
+                  <label htmlFor="preferredBranchId" className="block text-xs font-bold text-slate-800 mb-1.5">
+                    Preferred Campus <span className="text-rose-500">*</span>
                   </label>
                   <select
                     id="preferredBranchId"
                     value={formData.preferredBranchId}
                     onChange={(e) => setFormData({ ...formData, preferredBranchId: e.target.value })}
-                    className={`w-full px-3 py-2 rounded border text-xs sm:text-sm bg-white focus:outline-none focus:ring-1 focus:ring-blue-900 ${
-                      clientErrors.preferredBranchId ? 'border-rose-400' : 'border-slate-300'
+                    className={`w-full px-3.5 py-2.5 rounded-xl border text-sm bg-white focus:outline-none focus:ring-2 ${
+                      clientErrors.preferredBranchId ? 'border-rose-400 focus:ring-rose-200' : 'border-slate-300 focus:ring-blue-100 focus:border-blue-600'
                     }`}
                   >
                     {BRANCHES.map((branch) => (
@@ -339,23 +335,24 @@ function ApplyForm() {
                     ))}
                   </select>
                   {clientErrors.preferredBranchId && (
-                    <p className="mt-1 text-[11px] text-rose-600">{clientErrors.preferredBranchId}</p>
+                    <p className="mt-1 text-xs text-rose-600">{clientErrors.preferredBranchId}</p>
                   )}
                 </div>
               </div>
             </div>
 
-            {/* Section 2: Trainee Contact Information */}
-            <div className="space-y-3">
-              <h2 className="text-xs font-bold text-slate-900 uppercase tracking-wider pb-1.5 border-b border-slate-100 flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-blue-900" />
-                <span>2. Trainee Information</span>
+            {/* Section 2: Contact Details */}
+            <div className="space-y-4">
+              <h2 className="text-base font-bold text-slate-900 uppercase tracking-wider pb-2 border-b border-slate-100 flex items-center gap-2">
+                <ShieldCheck className="w-5 h-5 text-blue-600" />
+                <span>2. Applicant Information</span>
               </h2>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {/* Full Name */}
                 <div className="sm:col-span-2">
-                  <label htmlFor="fullName" className="block text-xs font-bold text-slate-800 mb-1">
-                    Full Legal Name (as on National ID / Passport) <span className="text-rose-600">*</span>
+                  <label htmlFor="fullName" className="block text-xs font-bold text-slate-800 mb-1.5">
+                    Full Legal Name <span className="text-rose-500">*</span>
                   </label>
                   <input
                     id="fullName"
@@ -363,18 +360,19 @@ function ApplyForm() {
                     placeholder="e.g. Alexander Wright"
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                    className={`w-full px-3 py-2 rounded border text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-blue-900 ${
-                      clientErrors.fullName ? 'border-rose-400' : 'border-slate-300'
+                    className={`w-full px-3.5 py-2.5 rounded-xl border text-sm focus:outline-none focus:ring-2 ${
+                      clientErrors.fullName ? 'border-rose-400 focus:ring-rose-200' : 'border-slate-300 focus:ring-blue-100 focus:border-blue-600'
                     }`}
                   />
                   {clientErrors.fullName && (
-                    <p className="mt-1 text-[11px] text-rose-600">{clientErrors.fullName}</p>
+                    <p className="mt-1 text-xs text-rose-600">{clientErrors.fullName}</p>
                   )}
                 </div>
 
+                {/* Telephone */}
                 <div>
-                  <label htmlFor="phone" className="block text-xs font-bold text-slate-800 mb-1">
-                    Direct Contact Telephone (Call / WhatsApp) <span className="text-rose-600">*</span>
+                  <label htmlFor="phone" className="block text-xs font-bold text-slate-800 mb-1.5">
+                    Contact Phone Number (Call / WhatsApp) <span className="text-rose-500">*</span>
                   </label>
                   <input
                     id="phone"
@@ -382,18 +380,19 @@ function ApplyForm() {
                     placeholder="e.g. +1 555-014-9921"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className={`w-full px-3 py-2 rounded border text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-blue-900 ${
-                      clientErrors.phone ? 'border-rose-400' : 'border-slate-300'
+                    className={`w-full px-3.5 py-2.5 rounded-xl border text-sm focus:outline-none focus:ring-2 ${
+                      clientErrors.phone ? 'border-rose-400 focus:ring-rose-200' : 'border-slate-300 focus:ring-blue-100 focus:border-blue-600'
                     }`}
                   />
-                  <p className="mt-1 text-[10px] text-slate-500">Used by admissions to confirm your training schedule.</p>
+                  <p className="mt-1 text-[11px] text-slate-500">Used by admissions to reach out regarding schedule slots.</p>
                   {clientErrors.phone && (
-                    <p className="mt-1 text-[11px] text-rose-600">{clientErrors.phone}</p>
+                    <p className="mt-1 text-xs text-rose-600">{clientErrors.phone}</p>
                   )}
                 </div>
 
+                {/* Email Address */}
                 <div>
-                  <label htmlFor="email" className="block text-xs font-bold text-slate-800 mb-1">
+                  <label htmlFor="email" className="block text-xs font-bold text-slate-800 mb-1.5">
                     Email Address <span className="text-slate-400 font-normal">(Optional)</span>
                   </label>
                   <input
@@ -402,87 +401,92 @@ function ApplyForm() {
                     placeholder="e.g. alexander@example.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className={`w-full px-3 py-2 rounded border text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-blue-900 ${
-                      clientErrors.email ? 'border-rose-400' : 'border-slate-300'
+                    className={`w-full px-3.5 py-2.5 rounded-xl border text-sm focus:outline-none focus:ring-2 ${
+                      clientErrors.email ? 'border-rose-400 focus:ring-rose-200' : 'border-slate-300 focus:ring-blue-100 focus:border-blue-600'
                     }`}
                   />
                   {clientErrors.email && (
-                    <p className="mt-1 text-[11px] text-rose-600">{clientErrors.email}</p>
+                    <p className="mt-1 text-xs text-rose-600">{clientErrors.email}</p>
                   )}
                 </div>
 
+                {/* Desired Start Period */}
                 <div className="sm:col-span-2">
-                  <label htmlFor="desiredStartPeriod" className="block text-xs font-bold text-slate-800 mb-1">
-                    Requested Start Period
+                  <label htmlFor="desiredStartPeriod" className="block text-xs font-bold text-slate-800 mb-1.5">
+                    Desired Training Start Period
                   </label>
                   <select
                     id="desiredStartPeriod"
                     value={formData.desiredStartPeriod}
                     onChange={(e) => setFormData({ ...formData, desiredStartPeriod: e.target.value })}
-                    className="w-full px-3 py-2 rounded border border-slate-300 text-xs sm:text-sm bg-white focus:outline-none focus:ring-1 focus:ring-blue-900"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-600"
                   >
-                    <option value="Next available start period (Earliest)">Next available start period (Earliest)</option>
+                    <option value="Next available start period">Next available start period (Earliest)</option>
                     <option value="Within the next 2 weeks">Within the next 2 weeks</option>
                     <option value="Next calendar month">Next calendar month</option>
-                    <option value="Weekend sessions only (Saturday)">Weekend sessions only (Saturday)</option>
+                    <option value="Weekend sessions only">Weekend sessions only</option>
                     <option value="Flexible / Just enquiring">Flexible / Just enquiring</option>
                   </select>
                 </div>
 
+                {/* Optional Message */}
                 <div className="sm:col-span-2">
-                  <label htmlFor="customerMessage" className="block text-xs font-bold text-slate-800 mb-1">
-                    Previous Driving Experience or Special Scheduling Notes <span className="text-slate-400 font-normal">(Optional)</span>
+                  <label htmlFor="customerMessage" className="block text-xs font-bold text-slate-800 mb-1.5">
+                    Additional Notes or Prior Driving Experience <span className="text-slate-400 font-normal">(Optional)</span>
                   </label>
                   <textarea
                     id="customerMessage"
-                    rows={2}
-                    placeholder="Mention any prior driving lessons, transmission preference (manual/automatic), or target completion date..."
+                    rows={3}
+                    placeholder="Tell us about any previous driving lessons, target test dates, or scheduling preferences..."
                     value={formData.customerMessage}
                     onChange={(e) => setFormData({ ...formData, customerMessage: e.target.value })}
                     maxLength={500}
-                    className="w-full px-3 py-2 rounded border border-slate-300 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-blue-900"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-600"
                   />
                 </div>
               </div>
             </div>
 
-            {/* Section 3: Statutory Consent */}
-            <div className="p-3.5 rounded bg-slate-50 border border-slate-200 space-y-2">
-              <label className="flex items-start gap-2.5 cursor-pointer">
+            {/* Section 3: Consent Acknowledgement */}
+            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+              <label className="flex items-start gap-3 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={formData.consentAcknowledged}
                   onChange={(e) => setFormData({ ...formData, consentAcknowledged: e.target.checked })}
-                  className="w-4 h-4 rounded border-slate-300 text-blue-900 focus:ring-blue-900 mt-0.5 shrink-0"
+                  className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500 mt-1 shrink-0"
                 />
-                <span className="text-[11px] text-slate-700 leading-relaxed">
-                  I consent to DriveTech Academy storing my contact details and contacting me regarding this application. I understand that submitting this enquiry does not require an upfront deposit and does not guarantee an immediate licence. <span className="text-rose-600">*</span>
+                <span className="text-xs text-slate-700 leading-relaxed">
+                  I consent to DriveTech storing my contact details and contacting me via phone, SMS, or WhatsApp regarding this training application. I understand that submitting this enquiry does not require upfront payment and does not guarantee a licence. <span className="text-rose-500">*</span>
                 </span>
               </label>
               {clientErrors.consentAcknowledged && (
-                <p className="text-[11px] text-rose-600 font-medium pl-6">{clientErrors.consentAcknowledged}</p>
+                <p className="text-xs text-rose-600 font-medium pl-7">{clientErrors.consentAcknowledged}</p>
               )}
             </div>
 
-            {/* Submit Button */}
-            <div>
+            {/* Submit Action (FR-FORM-006: disable while processing) */}
+            <div className="pt-2">
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3 px-4 rounded text-xs sm:text-sm font-bold text-white bg-blue-900 hover:bg-blue-800 disabled:bg-slate-400 shadow transition-colors flex items-center justify-center gap-2"
+                className="w-full py-4 px-6 rounded-xl text-base font-bold text-white bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
               >
                 {isSubmitting ? (
                   <>
-                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    <span>Submitting Application to Admissions...</span>
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <span>Transmitting Application...</span>
                   </>
                 ) : (
                   <>
-                    <Send className="w-4 h-4" />
+                    <Send className="w-5 h-5" />
                     <span>Submit Application for Follow-up</span>
                   </>
                 )}
               </button>
+              <p className="text-center text-xs text-slate-500 mt-3">
+                Need urgent assistance? Call our admissions desk directly at {COMPANY_INFO.centralPhone}.
+              </p>
             </div>
 
           </form>
@@ -495,8 +499,9 @@ function ApplyForm() {
 
 export default function ApplyPage() {
   return (
-    <Suspense fallback={<div className="py-20 text-center text-xs text-slate-500">Loading enrolment form...</div>}>
+    <Suspense fallback={<div className="py-20 text-center text-slate-500">Loading application form...</div>}>
       <ApplyForm />
     </Suspense>
   );
 }
+
