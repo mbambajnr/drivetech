@@ -100,11 +100,29 @@ const SLIDES: SlideData[] = [
 export default function HeroCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [isIntersecting, setIsIntersecting] = useState(true);
   const [announcement, setAnnouncement] = useState('');
+  const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const totalSlides = SLIDES.length;
+
+  // Pause autoplay when hero carousel is scrolled out of view
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsIntersecting(entry.isIntersecting);
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const goToSlide = useCallback((index: number) => {
     let target = index;
@@ -113,14 +131,13 @@ export default function HeroCarousel() {
     setCurrentSlide(target);
     setAnnouncement(`Slide ${target + 1} of ${totalSlides}: ${SLIDES[target].heading} ${SLIDES[target].highlightText}`);
 
-    // Native scroll-snap align
+    // Scroll ONLY the track container without touching window vertical scroll
     if (trackRef.current) {
-      const slideElements = trackRef.current.children;
-      if (slideElements[target]) {
-        (slideElements[target] as HTMLElement).scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest',
-          inline: 'center'
+      const slide = trackRef.current.children[target] as HTMLElement | undefined;
+      if (slide) {
+        trackRef.current.scrollTo({
+          left: slide.offsetLeft,
+          behavior: 'smooth'
         });
       }
     }
@@ -134,9 +151,9 @@ export default function HeroCarousel() {
     goToSlide(currentSlide - 1);
   }, [currentSlide, goToSlide]);
 
-  // Autoplay functionality with pause on hover/focus
+  // Autoplay functionality: pauses on hover/focus OR when scrolled out of view
   useEffect(() => {
-    if (isPlaying) {
+    if (isPlaying && isIntersecting) {
       timerRef.current = setInterval(() => {
         nextSlide();
       }, 6000);
@@ -144,7 +161,7 @@ export default function HeroCarousel() {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [isPlaying, nextSlide]);
+  }, [isPlaying, isIntersecting, nextSlide]);
 
   // Keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -159,6 +176,7 @@ export default function HeroCarousel() {
 
   return (
     <section 
+      ref={sectionRef}
       className="relative overflow-hidden bg-slate-950 text-white select-none"
       aria-roledescription="carousel"
       aria-label="DriveTech Academy Featured Programs"

@@ -1,6 +1,24 @@
 {
   "submissions": [
     {
+      "referenceNumber": "DT-TRN-20261119-KSP0",
+      "type": "training",
+      "status": "new",
+      "fullName": "Emana Jewelry",
+      "phone": "+233 539490469",
+      "email": "emanajewelries@gmail.com",
+      "selectedServiceId": "course-car-standard",
+      "selectedServiceName": "Standard Light Vehicle Driving (Class B)",
+      "preferredBranchId": "branch-central",
+      "preferredBranchName": "DriveTech Central Training Academy",
+      "desiredStartPeriod": "Flexible / Just enquiring",
+      "customerMessage": "TTYL",
+      "consentAcknowledged": true,
+      "id": "sub-1795080329433-gbre0",
+      "createdAt": "2026-11-19T09:25:29.433Z",
+      "updatedAt": "2026-11-19T09:25:29.433Z"
+    },
+    {
       "referenceNumber": "DT-LIC-20261117-N69Z",
       "type": "licensing",
       "status": "new",
